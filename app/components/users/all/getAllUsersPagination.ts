@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { GetAllUsersPaginationResponse } from "./types";
+import { GetAllUsersPaginationResponse } from "../types";
 
 const getAllUsersPagination = (req: Request): GetAllUsersPaginationResponse => {
   const page = Number(req.params.page);

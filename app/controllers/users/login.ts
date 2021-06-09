@@ -1,18 +1,9 @@
-import { User } from "@app/models/lib/models/user/types";
 import { Request, Response } from "express";
-import { Model } from "sequelize/types";
-import { updateUserToken } from "../../components/users/updateUserToken";
-import sequelize from "../../config/database";
+import { loginUser } from "../../components/users/login/loginUser";
+import { updateUserToken } from "../../components/users/login/updateUserToken";
 
 const login = async (req: Request, res: Response): Promise<void> => {
-  const { email, password } = req.body;
-
-  const loggedUser: Model<User> = await sequelize.model("User").findOne({
-    where: {
-      email,
-      password,
-    },
-  });
+  const loggedUser = await loginUser(req);
 
   if (loggedUser) {
     const updatedUser = await updateUserToken(loggedUser);

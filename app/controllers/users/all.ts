@@ -1,16 +1,13 @@
 import { Request, Response } from "express";
 import { Model } from "sequelize/types";
-import sequelize from "../../config/database";
 import { User } from "@app/models/lib/models/user/types";
-import { getAllUsersPagination } from "../../components/users/getAllUsersPagination";
+import { getAllUsersPagination } from "../../components/users/all/getAllUsersPagination";
+import { findAllUsersWithPagination } from "../../components/users/all/findAllUsersWithPagination";
 
 const all = async (req: Request, res: Response) => {
-  const { limit, offset } = getAllUsersPagination(req);
+  const allUsersPagination = getAllUsersPagination(req);
 
-  const allUsers: Model<User>[] = await sequelize.model("User").findAll({
-    limit,
-    offset,
-  });
+  const allUsers = await findAllUsersWithPagination(allUsersPagination);
   const JSONUsers = allUsers.map((el: Model<User>) => el.get({ plain: true }));
 
   res.json(JSONUsers);
