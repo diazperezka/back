@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "es2019",
+    "rootDir": "./app",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "isolatedModules": false,
+    "lib": [
+      "es2019",
+      "dom"
+    ],
+    "types": [
+      "node",
+    ]
+  },
+  "include": [
+    "app"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
