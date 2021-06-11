@@ -9,7 +9,8 @@ const login = async (req: Request, res: Response): Promise<void> => {
     const updatedUser = await updateUserToken(loggedUser);
 
     res.json({
-      response: updatedUser.get({ plain: true }),
+      response: "logged in",
+      data: updatedUser.get({ plain: true }),
     });
   } else {
     res.json({
